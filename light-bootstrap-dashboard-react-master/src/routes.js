@@ -16,10 +16,10 @@
 
 */
 import Dashboard from "views/Dashboard.jsx";
-import UserProfile from "views/UserProfile.jsx";
-import TableList from "views/TableList.jsx";
-import Typography from "views/Typography.jsx";
-import Icons from "views/Icons.jsx";
+import UserProfile from "views/input_sub.jsx";
+import TableList from "views/table_course.jsx";
+import Typography from "views/infomation.jsx";
+import Icons from "views/view_course.jsx";
 import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
 import Upgrade from "views/Upgrade.jsx";
@@ -60,7 +60,7 @@ const dashboardRoutes = [
     component: Icons,
     layout: "/admin"
   },
-  
+
 ];
 
 export default dashboardRoutes;
