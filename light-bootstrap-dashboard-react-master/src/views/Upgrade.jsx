@@ -1,124 +1,60 @@
-/*!
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-=========================================================
-* Light Bootstrap Dashboard React - v1.3.0
-=========================================================
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
 
-* Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, { Component } from "react";
-import { Table, Grid, Row, Col } from "react-bootstrap";
-
-import Card from "components/Card/Card";
-
-import Button from "components/CustomButton/CustomButton";
-
-class Icons extends Component {
-  render() {
-    return (
-      <div className="content">
-        <Grid fluid>
-          <Row>
-            <Col md={8} mdOffset={2}>
-              <Card
-                hCenter
-                title="Light Bootstrap Dashboard PRO React"
-                category="Are you looking for more components? Please check our Premium Version of Light Bootstrap Dashboard React."
-                ctTableResponsive
-                ctTableFullWidth
-                ctTableUpgrade
-                content={
-                  <Table>
-                    <thead>
-                      <tr>
-                        <th />
-                        <th className="text-center">Free</th>
-                        <th className="text-center">PRO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Components</td>
-                        <td>30</td>
-                        <td>60</td>
-                      </tr>
-                      <tr>
-                        <td>Plugins</td>
-                        <td>3</td>
-                        <td>13</td>
-                      </tr>
-                      <tr>
-                        <td>Example Pages</td>
-                        <td>7</td>
-                        <td>24</td>
-                      </tr>
-                      <tr>
-                        <td>Login/Register/Lock Pages</td>
-                        <td>
-                          <i className="fa fa-times text-danger" />
-                        </td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Premium Support</td>
-                        <td>
-                          <i className="fa fa-times text-danger" />
-                        </td>
-                        <td>
-                          <i className="fa fa-check text-success" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td />
-                        <td>Free</td>
-                        <td>Just $49</td>
-                      </tr>
-                      <tr>
-                        <td />
-                        <td>
-                          <Button
-                            href="#"
-                            round
-                            fill
-                            disabled
-                            bsStyle="default"
-                          >
-                            Current Version
-                          </Button>
-                        </td>
-                        <td>
-                          <Button
-                            target="_blank"
-                            href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro-react/?ref=lbdr-upgrade-page"
-                            round
-                            fill
-                            bsStyle="info"
-                          >
-                            Upgrade to PRO
-                          </Button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                }
-              />
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
 }
 
-export default Icons;
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
+
+export default function SimpleTable() {
+  const classes = useStyles();
+
+  return (
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
